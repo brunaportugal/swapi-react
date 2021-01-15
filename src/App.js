@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Navbar from "./components/Navbar.js";
+import Films from "./components/Films.js";
+import People from "./components/People.js";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 import './App.css';
 
 function App() {
+  const [films, setFilms] = useState([]);
+
+  useEffect(() => {
+    async function fetchFilms() {
+      let res = await fetch('https://swapi.dev/api/films/?format=json');
+      let data = await res.json();
+      setFilms(data.results);
+    }
+
+    fetchFilms();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Container>
+          <Switch>
+            <Route exact path='/'>
+              <Films data={films}/>
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
+    </>
   );
 }
 
