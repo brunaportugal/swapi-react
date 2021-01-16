@@ -7,13 +7,16 @@ export default function Films({ data }) {
     <>
       <h1>Films</h1>
       <Grid columns={1}>
-        {data.map((films, i) => {
+        {data.map((film, i) => {
           return (
             <Grid.Column key={i}>
-              <Link to={`/films/${i + 1}`}>
+              <Link to={{
+                pathname: `/film/${i + 1}`,
+                state: film
+              }} >
                 <img className="films-images" src={`../films/${i + 1}.jpg`} alt=""></img>
               </Link>
-              <h3>{films.title}</h3>
+              <h3>{film.title}</h3>
             </Grid.Column>
           )
         })}
