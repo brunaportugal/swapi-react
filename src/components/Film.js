@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Menu, Container } from 'semantic-ui-react';
-import { Link, Route, useLocation } from 'react-router-dom';
+import { Grid, Dimmer, Loader, Card } from 'semantic-ui-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Film() {
   const location = useLocation();
-  console.log(location);
   const film = location.state;
-  console.log(film);
 
   const numberPattern = /\d+/;
-
-  const characterIds = film.characters.map(character => character.match( numberPattern ) [0] );
-  console.log(characterIds);
+  const characterIds = film.characters.map(character => character.match( numberPattern )[0]);
+  const [loading, setLoading] = useState(true);
 
 
   const [characters, setCharacters] = useState([]);
@@ -25,7 +22,7 @@ export default function Film() {
         return characterData;
       }))
       setCharacters(characterInfo);
-      console.log(characterInfo);
+      setLoading(false);
     }
 
     fetchCharacters();
@@ -33,21 +30,43 @@ export default function Film() {
 
   return (
     <>
-      <h1>{film.title}</h1>
-      <Grid columns={1}>
-        <Grid.Column>
-          <Link to={`/film/${film.episode_id}`}>
+      {loading ? (
+        <Dimmer active inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
+        ) : (
+      <Grid columns='equal'>
+        <Grid.Row>
+          <Grid.Column>
+            <h1>{film.title}</h1>
             <img className="films-images" src={`../films/${film.episode_id}.jpg`} alt=""></img>
-          </Link>
-          <ul>
-            {characters.map(character =>
-              <li>
-                <img className="avatar" src={`../characters/${character.id}.jpg`} alt=""></img>
-                {character.name}
-              </li>)}
-          </ul>
-        </Grid.Column>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid columns={2}>
+            {characters.map((character, i) => {
+              return (
+                <Grid.Column key={i}>
+                  <div className='character-list'>
+                      <Grid.Row>
+                        <Link to={{
+                          pathname: `/character/${character.id}`,
+                          state: character
+                        }}>
+                          <img className="avatar" src={`../characters/${character.id}.jpg`} alt=""></img>
+                        </Link>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <h3>{character.name}</h3>
+                      </Grid.Row>
+                  </div>
+                </Grid.Column>
+              )
+            })}
+          </Grid>
+        </Grid.Row>
       </Grid>
+      )}
     </>
   )
 }
