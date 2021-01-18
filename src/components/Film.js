@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Dimmer, Loader, Card } from 'semantic-ui-react';
+import { Grid, Dimmer, Loader, Image } from 'semantic-ui-react';
 import { Link, useLocation } from 'react-router-dom';
+import { UncontrolledCollapse, Collapse, Button, CardBody, Card } from 'reactstrap';
 
-export default function Film() {
+export default function Film({ favoriteFilms, toggleFavoriteFilm }) {
+
   const location = useLocation();
   const film = location.state;
 
@@ -10,6 +12,8 @@ export default function Film() {
   const characterIds = film.characters.map(character => character.match( numberPattern )[0]);
   const [loading, setLoading] = useState(true);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   const [characters, setCharacters] = useState([]);
 
@@ -36,14 +40,26 @@ export default function Film() {
         </Dimmer>
         ) : (
       <Grid columns='equal'>
-        <Grid.Row>
-          <Grid.Column>
-            <h1>{film.title}</h1>
-            <img className="films-images" src={`../films/${film.episode_id}.jpg`} alt=""></img>
+        <Grid.Row className="row-banner">
+          <Grid.Column className="column-banner">
+            <img className="film-banner" src={`../films/${film.episode_id}.jpg`} alt=""></img>
+            <h1 className="film-title-show">{film.title}</h1>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid columns={2}>
+          <Grid.Column>
+          <div className="special-div">
+            <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>Description</Button>
+              <UncontrolledCollapse toggler="#toggler">
+                <p>{film.opening_crawl}</p>
+              </UncontrolledCollapse>
+          </div>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        <div className="pr-4">
+
+          <Grid columns={3}>
             {characters.map((character, i) => {
               return (
                 <Grid.Column key={i}>
@@ -57,13 +73,14 @@ export default function Film() {
                         </Link>
                       </Grid.Row>
                       <Grid.Row>
-                        <h3>{character.name}</h3>
+                        <p className="characters-index">{character.name}</p>
                       </Grid.Row>
                   </div>
                 </Grid.Column>
               )
             })}
           </Grid>
+        </div>
         </Grid.Row>
       </Grid>
       )}
