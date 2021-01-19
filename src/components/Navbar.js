@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <Menu inverted secondary>
+    <Menu inverted>
       <Container>
         <Link to='/' >
           <Menu.Item link name="films" />
