@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from 'react';
+import { render, screen, act } from '@testing-library/react';
+import { fetchFilms } from './App';
+import Films from './components/Films';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('the data is peanut butter', async () => {
+  const data = await fetchFilms();
+  expect(data).toBe('chuchu');
 });

@@ -25,6 +25,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }
