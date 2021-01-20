@@ -15,18 +15,28 @@ body {
   margin-bottom: 8px;
 }
 
+.big-avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: auto;
+  border: 5px solid #FEE81E;
+  margin-bottom: 20px;
+}
+
 .row {
   display: inline!important;
 }
 
 .app-title {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-top: 40px;
 }
 
 .star-wars-title {
   color: #FEE81E;
-  line-height: 25px;
+  line-height: 35px;
   font-size: 8vh;
 }
 
@@ -179,6 +189,10 @@ h1, h2, h3 {
 h4 {
   font-family: 'Lato', sans-serif;
   font-size: 20px;
+}
+
+.character-show {
+  text-align: center;
 }
 
 /*.favorite-button {

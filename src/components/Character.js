@@ -1,31 +1,63 @@
-import React, { useState } from 'react';
-import { Grid } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 export default function Character() {
   const location = useLocation();
   const character = location.state;
 
-  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
-
-  const toggleFavoriteCharacter = (id) => {
-    if (favoriteCharacters.includes(id)) {
-      const newFavoriteCharacters = favoriteCharacters.filter(f => f !== id);
-      setFavoriteCharacters(newFavoriteCharacters);
-    } else {
-      const newFavoriteCharacters = [...favoriteCharacters, id];
-      setFavoriteCharacters(newFavoriteCharacters);
+  const [homeworld, setHomeworld] = useState("n/a");
+  useEffect(() => {
+    async function fetchHomeworld() {
+      let res = await fetch(character.homeworld);
+      let data = await res.json();
+      setHomeworld(data);
     }
-  };
-  const isFavoriteCharacter = favoriteCharacters.includes(character.id);
+    fetchHomeworld();
+  }, [character])
+
+  const [species, setSpecies] = useState(null);
+  useEffect(() => {
+    if (character.species.length < 1) {
+      return
+    }
+    async function fetchSpecies() {
+      const speciesInfo = await Promise.all(character.species.map(async url => {
+        let res = await fetch(url);
+        return res.json();
+      }))
+      setSpecies(speciesInfo);
+    }
+    fetchSpecies();
+  }, [character])
 
   return (
     <>
-      <Grid.Column>
-        <img className="films-images" src={`../characters/${character.id}.jpg`} alt=""></img>
+      <div className="character-show">
+        <img className="big-avatar" src={`../characters/${character.id}.jpg`} alt=""></img>
         <h1>{character.name}</h1>
-        <button onClick={ () => toggleFavoriteCharacter(character.id) }>{isFavoriteCharacter ? "Favorite" : "Not Favorite"}</button>
-      </Grid.Column>
+      </div>
+      <div className="character-show mt-4">
+        <h4>Height: {character.height}cm</h4>
+        <h4>Mass: {character.mass}</h4>
+        <h4>Hair color: {character.hair_color}</h4>
+        <h4>Skin color: {character.skin_color}</h4>
+        <h4>Eye color: {character.eye_color}</h4>
+        <h4>Birth year: {character.birth_year}</h4>
+        <h4>Gender: {character.gender}</h4>
+        <h4>Homeworld: {homeworld.name}</h4>
+        <h4>Species: {!species ? "n/a" : species.map(s => s.name).join(", ")}</h4>
+      </div>
+      <div className="character-show mt-5">
+        <Button
+          className="col text-center"
+          color="success"
+          style={{ marginBottom: '1rem' }}
+        >
+          Favorite
+        </Button>
+      </div>
+
     </>
 
     );
