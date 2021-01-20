@@ -10,19 +10,23 @@ import './App.css';
 import './index.css';
 import { GlobalProvider } from "./context/GlobalState";
 
+export const getFilmsApiEndPoint = 'https://swapi.dev/api/films/?format=json'
+export const fetchFilms = async () => {
+  let res = await fetch(getFilmsApiEndPoint);
+  return res.json();
+}
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
-    async function fetchFilms() {
-      let res = await fetch('https://swapi.dev/api/films/?format=json');
-      let data = await res.json();
+    async function fetchData() {
+      const data = await fetchFilms();
       setFilms(data.results);
       setLoading(false);
     }
-
-    fetchFilms();
+      fetchData();
   }, [])
 
   return (

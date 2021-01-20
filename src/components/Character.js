@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Grid } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -7,27 +6,30 @@ export default function Character() {
   const location = useLocation();
   const character = location.state;
 
-  const [homeworld, setHomeworld] = useState([]);
+  const [homeworld, setHomeworld] = useState("n/a");
   useEffect(() => {
     async function fetchHomeworld() {
       let res = await fetch(character.homeworld);
       let data = await res.json();
       setHomeworld(data);
     }
-
     fetchHomeworld();
-  }, [])
+  }, [character])
 
-  const [species, setSpecies] = useState([]);
+  const [species, setSpecies] = useState(null);
   useEffect(() => {
-    async function fetchSpecies() {
-      let res = await fetch(character.species);
-      let data = await res.json();
-      setSpecies(data);
+    if (character.species.length < 1) {
+      return
     }
-
+    async function fetchSpecies() {
+      const speciesInfo = await Promise.all(character.species.map(async url => {
+        let res = await fetch(url);
+        return res.json();
+      }))
+      setSpecies(speciesInfo);
+    }
     fetchSpecies();
-  }, [])
+  }, [character])
 
   return (
     <>
@@ -44,7 +46,7 @@ export default function Character() {
         <h4>Birth year: {character.birth_year}</h4>
         <h4>Gender: {character.gender}</h4>
         <h4>Homeworld: {homeworld.name}</h4>
-        <h4>Species: { !species.length ? "n/a" : species.name }</h4>
+        <h4>Species: {!species ? "n/a" : species.map(s => s.name).join(", ")}</h4>
       </div>
       <div className="character-show mt-5">
         <Button

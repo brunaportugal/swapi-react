@@ -1,7 +1,6 @@
 import React from 'react';
-import { Grid, Icon, Button } from 'semantic-ui-react';
+import { Grid} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { FaStar, FaRegStar } from "react-icons/fa";
 
 export default function Films({ data }) {
   return (
@@ -20,9 +19,8 @@ export default function Films({ data }) {
                   state: film
                 }} >
                   <img className="films-images" src={`../films/${film.episode_id}.jpg`} alt=""></img>
+                  <h3 className="film-title">{film.title}</h3>
                 </Link>
-                <h3 className="film-title">{film.title}</h3>
-
               </Grid.Column>
             )
           })}

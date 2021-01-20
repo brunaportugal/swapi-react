@@ -1,7 +1,6 @@
-import React, { useEffect, useState, props } from 'react';
-import { Grid, Dimmer, Loader, Image } from 'semantic-ui-react';
-import { Link, useLocation } from 'react-router-dom';
-import { UncontrolledCollapse,  Button } from 'reactstrap';
+import React, { useEffect, useState } from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react';
+import { useLocation } from 'react-router-dom';
 import FilmPage from './FilmPage.js';
 
 export default function Film() {
@@ -27,7 +26,7 @@ export default function Film() {
     }
 
     fetchCharacters();
-  }, [])
+  }, [characterIds])
 
   return (
     <>

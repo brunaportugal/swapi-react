@@ -1,4 +1,4 @@
-export default (state, action) => {
+const AppReducer = (state, action) => {
   switch (action.type) {
     case "ADD_MOVIE_TO_FAVORITEMOVIES":
       return {
@@ -9,10 +9,12 @@ export default (state, action) => {
       return {
         ...state,
         favoriteMovies: state.favoriteMovies.filter(
-          (film) => film.episode_id !== action.payload
+          (film) => film.episode_id !== action.payload.episode_id
         ),
       };
     default:
       return state;
   }
 };
+
+export default AppReducer;
