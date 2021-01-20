@@ -8,7 +8,7 @@ import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import './App.css';
 import './index.css';
 
-function App() {
+export default function App() {
   const [loading, setLoading] = useState(true);
   const [films, setFilms] = useState([]);
 
@@ -16,37 +16,12 @@ function App() {
     async function fetchFilms() {
       let res = await fetch('https://swapi.dev/api/films/?format=json');
       let data = await res.json();
-      console.log(data);
       setFilms(data.results);
       setLoading(false);
     }
 
     fetchFilms();
   }, [])
-
-  const [favoriteFilms, setFavoriteFilms] = useState([]);
-
-  const toggleFavoriteFilm = (episode_id) => {
-    if (favoriteFilms.includes(episode_id)) {
-      const newFavoriteFilms = favoriteFilms.filter(f => f !== episode_id);
-      setFavoriteFilms(newFavoriteFilms);
-    } else {
-      const newFavoriteFilms = [...favoriteFilms, episode_id];
-      setFavoriteFilms(newFavoriteFilms);
-    }
-  };
-
-  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
-
-  const toggleFavoriteCharacter = (id) => {
-    if (favoriteCharacters.includes(id)) {
-      const newFavoriteCharacters = favoriteCharacters.filter(f => f !== id);
-      setFavoriteCharacters(newFavoriteCharacters);
-    } else {
-      const newFavoriteCharacters = [...favoriteCharacters, id];
-      setFavoriteCharacters(newFavoriteCharacters);
-    }
-  };
 
   return (
     <>
@@ -60,13 +35,13 @@ function App() {
             ) : (
             <Switch>
               <Route exact path='/'>
-                <Films data={films} favoriteFilms={favoriteFilms} toggleFavoriteFilm={toggleFavoriteFilm}/>
+                <Films data={films} />
               </Route>
               <Route path='/film/:id'>
-                <Film data={films}/>
+                <Film data={films} />
               </Route>
               <Route path='/character/:id'>
-                <Character favoriteCharacters={favoriteCharacters} toggleFavoriteCharacter={toggleFavoriteCharacter}/>
+                <Character />
               </Route>
           </Switch>
           )}
@@ -76,4 +51,3 @@ function App() {
   );
 }
 
-export default App;

@@ -3,7 +3,7 @@ import { Grid, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaRegStar } from "react-icons/fa";
 
-export default function Films({ data, favoriteFilms, toggleFavoriteFilm }) {
+export default function Films({ data }) {
   return (
     <>
       <div className="films-index">
@@ -13,7 +13,6 @@ export default function Films({ data, favoriteFilms, toggleFavoriteFilm }) {
         </div>
         <Grid columns={1}>
           {data.map((film, i) => {
-            const isFavoriteFilm = favoriteFilms.includes(film.episode_id);
             return (
               <Grid.Column key={i}>
                 <Link to={{
