@@ -144,12 +144,23 @@ h1, h2, h3 {
   text-shadow: 1px 1px 3px rgba(0,0,0,1);
 }
 
+.film-poster {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
 .characters-index {
   color: white;
   text-align: center;
   font-size: 15px;
   font-family: 'Ubuntu';
   padding-left: 12px;
+}
+
+.character-show {
+  text-align: center;
 }
 
 .special-div {
@@ -161,13 +172,3 @@ h1, h2, h3 {
   font-size: 15px;
 }
 
-.character-show {
-  text-align: center;
-}
-
-.film-poster {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-  border-radius: 50px;
-}
