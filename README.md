@@ -1,4 +1,4 @@
-### About
+### `About`
 
 This is an application built with React. It takes the Star Wars API and displays information about the movies and its characters. The project was deployed on Netlify and can be accessed through this link: https://bruna-swapi.netlify.app/
 
