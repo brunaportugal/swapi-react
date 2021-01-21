@@ -21,7 +21,7 @@ export default function FilmPage({ film, characters }) {
       <h4 data-testid="film-director">Director: {film.director}</h4>
       <h4>Producer(s): {film.producer}</h4>
       <h4>Release date: {film.release_date}</h4>
-      <h5 className="text-justify mt-3">{film.opening_crawl}</h5>
+      <h5 className="text-justify mt-3 opening-crawl">{film.opening_crawl}</h5>
     </div>
     <div className="special-div">
       <Button className="col text-center" color="primary" id="toggler" style={{ marginBottom: '1rem' }}>Characters</Button>
