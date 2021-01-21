@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // import { Button } from 'reactstrap';
 // import { GlobalContext } from '../context/GlobalState';
 
