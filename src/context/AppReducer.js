@@ -12,6 +12,18 @@ const AppReducer = (state, action) => {
           (film) => film.episode_id !== action.payload.episode_id
         ),
       };
+    // case "ADD_CHARACTER_TO_FAVORITES":
+    //   return {
+    //     ...state,
+    //     favoriteCharacters: [action.payload, ...state.favoriteCharacters],
+    //   };
+    // case "REMOVE_CHARACTER_FROM_FAVORITES":
+    //   return {
+    //     ...state,
+    //     favoriteCharacters: state.favoriteCharacters.filter(
+    //       (character) => character.id !== action.payload.id
+    //     ),
+    //   };
     default:
       return state;
   }

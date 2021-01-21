@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { useLocation } from 'react-router-dom';
+import { useStateIfMounted } from "use-state-if-mounted";
 import FilmPage from './FilmPage.js';
 
 export default function Film() {
@@ -11,7 +12,7 @@ export default function Film() {
   const characterIds = film.characters.map(character => character.match( numberPattern )[0]);
   const [loading, setLoading] = useState(true);
 
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useStateIfMounted(0);
 
   useEffect(() => {
     async function fetchCharacters() {

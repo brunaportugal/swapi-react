@@ -6,7 +6,7 @@ export default function Films({ data }) {
   return (
     <>
       <div className="films-index">
-        <div className="app-title">
+        <div className="my-4">
           <h1 className="star-wars-title">Star</h1>
           <h1 className="star-wars-title">Wars</h1>
         </div>

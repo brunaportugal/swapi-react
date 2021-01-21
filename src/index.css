@@ -29,9 +29,10 @@ body {
   display: inline!important;
 }
 
-.app-title {
-  margin-bottom: 40px;
-  margin-top: 40px;
+.fav-title {
+  color: #FEE81E;
+  line-height: 30px;
+  font-size: 7vh;
 }
 
 .star-wars-title {
@@ -62,30 +63,18 @@ div.column {
 
 .films-images {
   height: 130px;
-  /*width: 288px;*/
   width: 100%;
   border-radius: 50px;
   object-fit: cover;
   position: relative;
   margin-top: 30px;
-  /*opacity: 80%;*/
 }
 
 .film-title {
-/*  position: absolute;
-  top: 100px;
-  left: 30px;*/
-/*  width: 100%;
-  height: 30%;
-  font-size: 20px;*/
   color: #FEE81E;
   font-size: 35px;
   margin-top: 0px;
   line-height: 31px;
-/*  margin: -10px 0px 0px;
-  position: absolute;
-  text-align: center;*/
-/*  background: rgb(0, 0, 0);*/
 }
 
 .film-info {
@@ -93,19 +82,8 @@ div.column {
   font-family: 'Star Jedi';
 }
 
-/*.film-info > h4 {
-  font-family: 'Star Jedi';
-  font-size: 18px;
-}
-
-.film-info > h5 {
-  font-family: 'Ubuntu';
-  font-size: 18px;
-}*/
-
 h1, h2, h3 {
   font-family: 'Star Jedi';
-  /*color: white;*/
 }
 
 .character-list {
@@ -168,11 +146,8 @@ h1, h2, h3 {
 
 .characters-index {
   color: white;
-  /*padding: 0px 0px;*/
-  /*margin-left: -10px;*/
   text-align: center;
   font-size: 15px;
-  /*margin: 0 auto;*/
   font-family: 'Ubuntu';
   padding-left: 12px;
 }
@@ -186,28 +161,13 @@ h1, h2, h3 {
   font-size: 15px;
 }
 
-h4 {
-  font-family: 'Lato', sans-serif;
-  font-size: 20px;
-}
-
 .character-show {
   text-align: center;
 }
 
-/*.favorite-button {
-  color: #FEE81E;
-  font-size: 30px;
-  position: absolute;
-  top: 100px;
-  left: 300px;
-}*/
-
-/*button, input, optgroup, select, textarea {
-  background-color: transparent;
-  border-color: #FEE81E;
-}*/
-
-/*.ui.button, .ui.buttons .button, .ui.buttons {
-  background-color: black;
-}*/
+.film-poster {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50px;
+}
