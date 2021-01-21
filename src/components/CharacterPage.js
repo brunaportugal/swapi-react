@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { Grid } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { UncontrolledCollapse,  Button } from 'reactstrap';
-import { GlobalContext } from '../context/GlobalState';
+// import { Button } from 'reactstrap';
+// import { GlobalContext } from '../context/GlobalState';
 
 
 export default function CharacterPage({ character, species, homeworld }) {

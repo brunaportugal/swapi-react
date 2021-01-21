@@ -11,7 +11,6 @@ export default function FilmPage({ film, characters }) {
   let storedMovie = favoriteMovies.find(o => o.episode_id === film.episode_id);
   const isFavoriteMovie = storedMovie ? true : false
 
-
   return (
     <>
     <div>

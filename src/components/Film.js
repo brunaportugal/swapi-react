@@ -27,7 +27,7 @@ export default function Film() {
     }
 
     fetchCharacters();
-  }, [characterIds])
+  }, [characterIds, setCharacters])
 
   return (
     <>
