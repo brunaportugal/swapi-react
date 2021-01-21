@@ -4,7 +4,7 @@ This is an application built with React. It takes the Star Wars API and displays
 
 ### `npm install`
 
-Downloads the package and it's dependencies.\
+Downloads the package and it's dependencies.
 
 ### `npm start`
 
